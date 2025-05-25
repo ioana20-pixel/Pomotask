@@ -8,22 +8,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private static final int WORK_DURATION = 25 * 60;       // 25 minutes
-    private static final int SHORT_BREAK_DURATION = 5 * 60; // 5 minutes
-    private static final int LONG_BREAK_DURATION = 15 * 60; // 15 minutes
+    private static final int WORK_DURATION = 1 * 3;       // 25 minutes
+    private static final int SHORT_BREAK_DURATION = 1 * 2; // 5 minutes
+    private static final int LONG_BREAK_DURATION = 1 * 2; // 15 minutes
     private static final int POMODOROS_BEFORE_LONG_BREAK = 4;
 
     // UI
@@ -43,6 +42,11 @@ public class TimerActivity extends AppCompatActivity {
     // Firebase
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
+
+    // For achievements
+    private int pomodorosToday = 0;
+    private int totalPomodoros = 0;
+    private int streak = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class TimerActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         updateAllUI();
+        loadStatsForAchievements();
 
         btnStartPause.setOnClickListener(v -> {
             if (isRunning) {
@@ -74,7 +79,6 @@ public class TimerActivity extends AppCompatActivity {
         });
 
         btnReset.setOnClickListener(v -> resetTimer());
-
         btnBack.setOnClickListener(v -> finish());
 
         Button btnDashboard = findViewById(R.id.btnDashboard);
@@ -85,7 +89,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private void startTimer() {
         isRunning = true;
-        btnStartPause.setImageResource(R.drawable.ic_pause); // swap to pause icon
+        btnStartPause.setImageResource(R.drawable.ic_pause);
 
         countDownTimer = new CountDownTimer(timeLeftInSeconds * 1000L, 1000) {
             @Override
@@ -93,7 +97,6 @@ public class TimerActivity extends AppCompatActivity {
                 timeLeftInSeconds = (int) (millisUntilFinished / 1000);
                 updateTimerUI();
             }
-
             @Override
             public void onFinish() {
                 handleSessionEnd();
@@ -103,7 +106,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private void pauseTimer() {
         isRunning = false;
-        btnStartPause.setImageResource(R.drawable.ic_play); // swap to play icon
+        btnStartPause.setImageResource(R.drawable.ic_play);
         if (countDownTimer != null) countDownTimer.cancel();
     }
 
@@ -118,11 +121,9 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void handleSessionEnd() {
-        // 1. Save session to Firestore
         int sessionDuration = getMaxForCurrentState();
         recordSessionInFirestore(currentState, sessionDuration);
 
-        // 2. Move to next state/session
         if ("Work".equals(currentState)) {
             pomodoroCount++;
             if (pomodoroCount % POMODOROS_BEFORE_LONG_BREAK == 0) {
@@ -143,6 +144,9 @@ public class TimerActivity extends AppCompatActivity {
         updateAllUI();
         isRunning = false;
         btnStartPause.setImageResource(R.drawable.ic_play);
+
+        // ** After session ends, refresh stats & check achievements **
+        loadStatsForAchievements();
     }
 
     private void recordSessionInFirestore(String sessionType, int durationInSeconds) {
@@ -153,20 +157,119 @@ public class TimerActivity extends AppCompatActivity {
         Map<String, Object> session = new HashMap<>();
         session.put("userId", currentUser.getUid());
         session.put("type", sessionType);
-        session.put("duration", durationInSeconds);
+        session.put("duration", durationInSeconds / 60); // store as minutes
         session.put("date", date);
         session.put("startTime", startTime);
         session.put("sessionNum", sessionCount);
 
-        db.collection("sessions").add(session)
-                .addOnSuccessListener(documentReference -> {
-                    // Optional: Log or toast
-                    // Toast.makeText(this, "Session recorded", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Optional: Log or toast
-                    // Toast.makeText(this, "Failed to record session", Toast.LENGTH_SHORT).show();
+        db.collection("users").document(currentUser.getUid())
+                .collection("sessions")
+                .add(session);
+    }
+
+    private void loadStatsForAchievements() {
+        if (currentUser == null) return;
+        String todayDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+        // 1. Pomodoros Today & Total Pomodoros
+        db.collection("users").document(currentUser.getUid())
+                .collection("sessions")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    pomodorosToday = 0;
+                    totalPomodoros = 0;
+                    List<String> daysWithPomodoro = new ArrayList<>();
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        Session s = doc.toObject(Session.class);
+                        if (s != null && "Work".equals(s.type)) {
+                            totalPomodoros++;
+                            if (todayDate.equals(s.date)) pomodorosToday++;
+                            if (!daysWithPomodoro.contains(s.date)) daysWithPomodoro.add(s.date);
+                        }
+                    }
+                    checkAndUnlockAchievements();
                 });
+
+        // 2. Streak (how many days in a row with sessions)
+        db.collection("users").document(currentUser.getUid())
+                .collection("sessions")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    Set<String> daysWithSessions = new HashSet<>();
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        Session session = doc.toObject(Session.class);
+                        if (session != null && session.date != null)
+                            daysWithSessions.add(session.date);
+                    }
+                    streak = 0;
+                    Calendar cal = Calendar.getInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    while (daysWithSessions.contains(df.format(cal.getTime()))) {
+                        streak++;
+                        cal.add(Calendar.DAY_OF_YEAR, -1);
+                    }
+                    checkAndUnlockAchievements();
+                });
+    }
+
+    private void checkAndUnlockAchievements() {
+        // Unlock at the end of every session, based on updated stats!
+        // 1. First Pomodoro
+        if (totalPomodoros == 1) {
+            unlockAchievementIfNeeded("first_pomodoro", "First Pomodoro", "Completed your first work session!");
+        }
+        // 2. First Full Set (4 Pomodoros)
+        if (totalPomodoros == 4) {
+            unlockAchievementIfNeeded("pomodoro_set", "First Set", "Completed a set of 4 Pomodoros!");
+        }
+        // 3. Daily Goal (8 Pomodoros in a day)
+        if (pomodorosToday >= 8) {
+            unlockAchievementIfNeeded("daily_goal", "Daily Goal", "Completed 8 Pomodoros in a day!");
+        }
+        // 4. Streaks
+        if (streak == 3) {
+            unlockAchievementIfNeeded("3_day_streak", "3-Day Streak", "Used Pomodoro for 3 days in a row!");
+        }
+        if (streak == 7) {
+            unlockAchievementIfNeeded("7_day_streak", "7-Day Streak", "Used Pomodoro for a week straight!");
+        }
+        // 5. Total Pomodoros (Lifetime)
+        if (totalPomodoros == 10) {
+            unlockAchievementIfNeeded("pomodoro_10", "Pomodoro Novice", "Completed 10 Pomodoros in total!");
+        }
+        if (totalPomodoros == 50) {
+            unlockAchievementIfNeeded("pomodoro_50", "Pomodoro Pro", "Completed 50 Pomodoros in total!");
+        }
+        if (totalPomodoros == 100) {
+            unlockAchievementIfNeeded("pomodoro_100", "Pomodoro Master", "Completed 100 Pomodoros in total!");
+        }
+    }
+
+    private void unlockAchievementIfNeeded(String achievementId, String name, String desc) {
+        if (currentUser == null) return;
+        db.collection("users").document(currentUser.getUid()).collection("achievements")
+                .document(achievementId).get()
+                .addOnSuccessListener(doc -> {
+                    if (!doc.exists() || !Boolean.TRUE.equals(doc.getBoolean("unlocked"))) {
+                        Achievement ach = new Achievement(achievementId, name, desc, true, System.currentTimeMillis());
+                        db.collection("users").document(currentUser.getUid())
+                                .collection("achievements").document(achievementId).set(ach);
+                        Toast.makeText(this, "Achievement Unlocked: " + name, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    // Shows a tomato icon for each completed pomodoro (up to 4 per session)
+    private void updatePomodoroIcons() {
+        layoutPomodoros.removeAllViews();
+        for (int i = 0; i < pomodoroCount % POMODOROS_BEFORE_LONG_BREAK; i++) {
+            ImageView tomato = new ImageView(this);
+            tomato.setImageResource(R.drawable.ic_tomato);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(64, 64);
+            params.setMargins(6, 0, 6, 0);
+            tomato.setLayoutParams(params);
+            layoutPomodoros.addView(tomato);
+        }
     }
 
     private void updateAllUI() {
@@ -180,7 +283,6 @@ public class TimerActivity extends AppCompatActivity {
         int minutes = timeLeftInSeconds / 60;
         int seconds = timeLeftInSeconds % 60;
         tvTimer.setText(String.format("%02d:%02d", minutes, seconds));
-
         int max = getMaxForCurrentState();
         int progress = (int) (((double) timeLeftInSeconds / max) * 100);
         progressIndicator.setProgress(progress);
@@ -193,19 +295,6 @@ public class TimerActivity extends AppCompatActivity {
             case "Long Break":  return LONG_BREAK_DURATION;
         }
         return WORK_DURATION;
-    }
-
-    // Shows a tomato icon for each completed pomodoro (up to 4 per session)
-    private void updatePomodoroIcons() {
-        layoutPomodoros.removeAllViews();
-        for (int i = 0; i < pomodoroCount % POMODOROS_BEFORE_LONG_BREAK; i++) {
-            ImageView tomato = new ImageView(this);
-            tomato.setImageResource(R.drawable.ic_tomato); // Use your themed icon!
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(64, 64);
-            params.setMargins(6, 0, 6, 0);
-            tomato.setLayoutParams(params);
-            layoutPomodoros.addView(tomato);
-        }
     }
 
     @Override

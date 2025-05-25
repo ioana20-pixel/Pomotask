@@ -1,63 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/mochaBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:background="@color/mochaBackground"
+    android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingBottom="18dp">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/circle_background"
-            android:src="@drawable/ic_back_arrow"
-            android:contentDescription="Back"
-            app:tint="@color/mocha_light" />
+        <!-- Progress Bar & Stats Header with Back Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_back_arrow"
+                android:contentDescription="Back"
+                android:scaleType="center"
+                app:tint="@color/mocha_light" />
+
+            <TextView
+                android:id="@+id/tvProgressTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today's Progress"
+                android:textSize="22sp"
+                android:textColor="@color/cream"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarToday"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:progressDrawable="@drawable/rounded_progress"
+            android:max="8"
+            android:layout_marginBottom="8dp" />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/tvTodayStats"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Session Dashboard"
+            android:text="3/8 Pomodoros • Streak: 2 days"
             android:textColor="@color/cream"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:fontFamily="@font/poppins_regular"/>
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Achievements Section -->
+        <TextView
+            android:id="@+id/tvAchievementsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Achievements"
+            android:textSize="20sp"
+            android:textColor="@color/cream"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAchievements"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Session History Section -->
+        <TextView
+            android:id="@+id/tvHistoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's Sessions"
+            android:textSize="20sp"
+            android:textColor="@color/cream"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSessions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Today's Sessions"
-        android:textColor="@color/cream"
-        android:textSize="16sp"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_marginBottom="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSessions"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <TextView
-        android:id="@+id/tvNoSessions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No sessions recorded today."
-        android:textColor="@color/cream"
-        android:gravity="center"
-        android:paddingTop="24dp"
-        android:textSize="16sp"
-        android:visibility="gone"/>
-</LinearLayout>
+</ScrollView>

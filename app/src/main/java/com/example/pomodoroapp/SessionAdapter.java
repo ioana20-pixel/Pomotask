@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionViewHolder> {
-
     private List<Session> sessionList;
 
-    public SessionAdapter(List<Session> sessionList) {
-        this.sessionList = sessionList;
+    public SessionAdapter(List<Session> sessions) {
+        this.sessionList = sessions;
     }
 
     @NonNull
@@ -26,11 +25,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
     @Override
     public void onBindViewHolder(@NonNull SessionViewHolder holder, int position) {
         Session session = sessionList.get(position);
-        holder.tvType.setText(session.type);
-        holder.tvSessionNum.setText("Session " + session.sessionNum);
+        holder.tvType.setText("Pomodoro Set");
+        holder.tvSessionNum.setText("Set " + session.sessionNum);
+
+        // For grouped sets, session.startTime is already like "14:00 - 16:00"
         holder.tvTime.setText(session.startTime);
-        int min = session.duration / 60;
-        holder.tvDuration.setText(min + "m");
+
+        // Show duration in minutes
+        holder.tvDuration.setText((session.duration / 60) + "m");
     }
 
     @Override
@@ -38,8 +40,9 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         return sessionList.size();
     }
 
-    public static class SessionViewHolder extends RecyclerView.ViewHolder {
+    static class SessionViewHolder extends RecyclerView.ViewHolder {
         TextView tvType, tvSessionNum, tvTime, tvDuration;
+
         public SessionViewHolder(@NonNull View itemView) {
             super(itemView);
             tvType = itemView.findViewById(R.id.tvType);
