@@ -62,21 +62,19 @@ Pomotask is a modern Android app built to supercharge your productivity using th
 
 ## 📱 Screenshots
 
-<table>
-<tr>
-  <td align="center"><b>Splash Screen</b><br><img src="![image](https://github.com/user-attachments/assets/62493c7b-678d-4b28-9cc3-9f2cc9c39844)" width="180"/></td>
-  <td align="center"><b>Login</b><br><img src="![image](https://github.com/user-attachments/assets/e3ae744a-6f3a-4211-adf8-de3749eff10e)E" width="180"/></td>
-  <td align="center"><b>Home</b><br><img src="![image](https://github.com/user-attachments/assets/75b0037a-442c-4c8f-84ab-ed2e4e4163b0)" width="220"/></td>
-</tr>
-<tr>
-  <td align="center"><b>Timer</b><br><img src="![image](https://github.com/user-attachments/assets/f1b70c65-e9f9-4c00-9ee7-811f1e74c1f0)" width="220"/></td>
-  <td align="center"><b>Dashboard</b><br><img src="![image](https://github.com/user-attachments/assets/d59ded08-3585-4d26-92ae-5f36df810a12)" width="220"/></td>
-  <td align="center"><b>Calendar</b><br><img src="![image](https://github.com/user-attachments/assets/197aa4e2-5778-4f55-9ba0-2793d05ebd49)" width="220"/></td>
-</tr>
-<tr>
-  <td align="center" colspan="3"><b>Account</b><br><img src="![image](https://github.com/user-attachments/assets/a1a02b8c-3097-43e0-9ab5-f89a36a21ae5)" width="220"/></td>
-</tr>
-</table>
+![image](https://github.com/user-attachments/assets/62493c7b-678d-4b28-9cc3-9f2cc9c39844)
+---
+![image](https://github.com/user-attachments/assets/e3ae744a-6f3a-4211-adf8-de3749eff10e)
+---
+![image](https://github.com/user-attachments/assets/75b0037a-442c-4c8f-84ab-ed2e4e4163b0)
+---
+![image](https://github.com/user-attachments/assets/f1b70c65-e9f9-4c00-9ee7-811f1e74c1f0)
+---
+![image](https://github.com/user-attachments/assets/d59ded08-3585-4d26-92ae-5f36df810a12)
+---
+![image](https://github.com/user-attachments/assets/a1a02b8c-3097-43e0-9ab5-f89a36a21ae5)
+---
+![image](https://github.com/user-attachments/assets/197aa4e2-5778-4f55-9ba0-2793d05ebd49)
 
 ---
 
