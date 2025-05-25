@@ -67,8 +67,9 @@ public class DashboardActivity extends AppCompatActivity {
     private void loadSessionsForToday() {
         if (currentUser == null) return;
         String todayDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        db.collection("sessions")
-                .whereEqualTo("userId", currentUser.getUid())
+        db.collection("users")
+                .document(currentUser.getUid())
+                .collection("sessions")
                 .whereEqualTo("date", todayDate)
                 .orderBy("startTime", Query.Direction.ASCENDING)
                 .get()
@@ -134,8 +135,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void loadStreak() {
         if (currentUser == null) return;
-        db.collection("sessions")
-                .whereEqualTo("userId", currentUser.getUid())
+        db.collection("users")
+                .document(currentUser.getUid())
+                .collection("sessions")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     Set<String> daysWithSessions = new HashSet<>();
