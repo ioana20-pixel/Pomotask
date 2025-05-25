@@ -35,7 +35,7 @@ Pomotask is a modern Android app built to supercharge your productivity using th
 ## 🚀 Getting Started
 
 1. **Clone this repo**  
-   `git clone https://github.com/ioana20-pixel/pomotask.git`
+   `git clone https://github.com/ioana20-pixel/Pomotask.git`
 
 2. **Open in Android Studio**  
    Import the project and let Gradle sync.
