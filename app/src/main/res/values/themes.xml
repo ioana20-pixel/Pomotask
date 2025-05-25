@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.PomodoroApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Pomotask" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowBackground">@color/mocha_light</item>
+        <item name="colorPrimary">@color/mocha_medium</item>
+        <item name="colorPrimaryDark">@color/mocha_dark</item>
+        <item name="colorAccent">@color/mocha_medium</item>
+        <item name="android:textColorPrimary">@color/mocha_dark</item>
+        <item name="android:textColorSecondary">@color/mocha_medium</item>
+    </style>
+
+    <style name="CardRoundedShadow">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">6dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:clipChildren">false</item>
+        <!-- If you want rounded corners, consider using a drawable background instead -->
+    </style>
+
+    <style name="RoundedButton">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="CircularImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- This makes it a circle -->
+    </style>
 </resources>

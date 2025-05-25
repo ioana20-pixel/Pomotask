@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "66809341840",
+    "project_id": "pomotask-cee58",
+    "storage_bucket": "pomotask-cee58.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66809341840:android:649fb5a73f571f3aaaf515",
+        "android_client_info": {
+          "package_name": "com.example.pomodoroapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNZAtn3Tas3LSlQfMhHPT3ZoVI1lP0-zY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

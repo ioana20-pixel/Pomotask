@@ -1,0 +1,69 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:background="@color/mochaAccent"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    android:padding="16dp">
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+<CheckBox
+    android:id="@+id/cbComplete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp"
+    android:buttonTint="@color/mocha"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:padding="0dp" />
+
+<TextView
+    android:id="@+id/tvTaskTitle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:ellipsize="end"
+    android:gravity="center_vertical"
+    android:maxLines="1"
+    android:text="Sample Task"
+    android:textColor="@color/mocha"
+    android:textSize="18sp"
+    android:fontFamily="@font/poppins_regular"/>
+
+<ImageButton
+    android:id="@+id/btnEditTask"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="12dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:contentDescription="Edit Task"
+    android:padding="0dp"
+    android:scaleType="centerInside"
+    android:src="@drawable/ic_edit" />
+
+<ImageButton
+    android:id="@+id/btnDeleteTask"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:contentDescription="Delete Task"
+    android:padding="0dp"
+    android:scaleType="centerInside"
+    android:src="@drawable/ic_delete" />
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>

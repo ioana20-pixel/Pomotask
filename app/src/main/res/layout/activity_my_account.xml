@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mochaBackground"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <!-- Profile Picture Section with Initial Overlay -->
+    <FrameLayout
+        android:id="@+id/flProfileContainer"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center">
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_profile_placeholder"
+            android:contentDescription="Profile Picture"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop" />
+
+        <!-- Initial Text Overlay -->
+        <TextView
+            android:id="@+id/tvProfileInitial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:textColor="@android:color/white"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"/>
+    </FrameLayout>
+
+    <!-- Username -->
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/cream"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
+
+    <!-- Email Address -->
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user@example.com"
+        android:textColor="@color/cream"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <!-- Delete Account Button -->
+    <Button
+        android:id="@+id/btnDeleteAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete My Account"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <!-- Change Password Button -->
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <Button
+        android:id="@+id/btnDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Dashboard"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/poppins_regular"
+        android:drawableLeft="@drawable/ic_dashboard"
+        android:drawablePadding="8dp"/>
+
+    <!-- Support Section -->
+    <TextView
+        android:id="@+id/tvSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Need help? Contact Support"
+        android:textColor="@color/cream"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_regular"/>
+</LinearLayout>
