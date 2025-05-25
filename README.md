@@ -35,7 +35,7 @@ Pomotask is a modern Android app built to supercharge your productivity using th
 ## 🚀 Getting Started
 
 1. **Clone this repo**  
-   `git clone https://github.com/yourusername/pomotask.git`
+   `git clone https://github.com/ioana20-pixel/pomotask.git`
 
 2. **Open in Android Studio**  
    Import the project and let Gradle sync.
@@ -62,7 +62,15 @@ Pomotask is a modern Android app built to supercharge your productivity using th
 
 ## 📱 Screenshots
 
-*(Add your own screenshots here!)*
+![image](https://github.com/user-attachments/assets/62493c7b-678d-4b28-9cc3-9f2cc9c39844)
+![image](https://github.com/user-attachments/assets/e3ae744a-6f3a-4211-adf8-de3749eff10e)
+![image](https://github.com/user-attachments/assets/75b0037a-442c-4c8f-84ab-ed2e4e4163b0)
+![image](https://github.com/user-attachments/assets/f1b70c65-e9f9-4c00-9ee7-811f1e74c1f0)
+![image](https://github.com/user-attachments/assets/d59ded08-3585-4d26-92ae-5f36df810a12)
+![image](https://github.com/user-attachments/assets/a1a02b8c-3097-43e0-9ab5-f89a36a21ae5)
+![image](https://github.com/user-attachments/assets/197aa4e2-5778-4f55-9ba0-2793d05ebd49)
+
+
 
 ---
 
