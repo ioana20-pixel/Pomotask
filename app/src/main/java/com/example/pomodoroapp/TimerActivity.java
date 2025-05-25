@@ -20,9 +20,9 @@ import java.util.*;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private static final int WORK_DURATION = 1 * 3;       // 25 minutes
-    private static final int SHORT_BREAK_DURATION = 1 * 2; // 5 minutes
-    private static final int LONG_BREAK_DURATION = 1 * 2; // 15 minutes
+    private static final int WORK_DURATION = 25 * 60;       // 25 minutes
+    private static final int SHORT_BREAK_DURATION = 5 * 60; // 5 minutes
+    private static final int LONG_BREAK_DURATION = 15 * 60; // 15 minutes
     private static final int POMODOROS_BEFORE_LONG_BREAK = 4;
 
     // UI
@@ -145,7 +145,7 @@ public class TimerActivity extends AppCompatActivity {
         isRunning = false;
         btnStartPause.setImageResource(R.drawable.ic_play);
 
-        // ** After session ends, refresh stats & check achievements **
+        // After session ends, refresh stats & check achievements
         loadStatsForAchievements();
     }
 
@@ -162,6 +162,7 @@ public class TimerActivity extends AppCompatActivity {
         session.put("startTime", startTime);
         session.put("sessionNum", sessionCount);
 
+        // ✅ FIX: Store under /users/{uid}/sessions/
         db.collection("users").document(currentUser.getUid())
                 .collection("sessions")
                 .add(session);
@@ -214,26 +215,21 @@ public class TimerActivity extends AppCompatActivity {
 
     private void checkAndUnlockAchievements() {
         // Unlock at the end of every session, based on updated stats!
-        // 1. First Pomodoro
         if (totalPomodoros == 1) {
             unlockAchievementIfNeeded("first_pomodoro", "First Pomodoro", "Completed your first work session!");
         }
-        // 2. First Full Set (4 Pomodoros)
         if (totalPomodoros == 4) {
             unlockAchievementIfNeeded("pomodoro_set", "First Set", "Completed a set of 4 Pomodoros!");
         }
-        // 3. Daily Goal (8 Pomodoros in a day)
         if (pomodorosToday >= 8) {
             unlockAchievementIfNeeded("daily_goal", "Daily Goal", "Completed 8 Pomodoros in a day!");
         }
-        // 4. Streaks
         if (streak == 3) {
             unlockAchievementIfNeeded("3_day_streak", "3-Day Streak", "Used Pomodoro for 3 days in a row!");
         }
         if (streak == 7) {
             unlockAchievementIfNeeded("7_day_streak", "7-Day Streak", "Used Pomodoro for a week straight!");
         }
-        // 5. Total Pomodoros (Lifetime)
         if (totalPomodoros == 10) {
             unlockAchievementIfNeeded("pomodoro_10", "Pomodoro Novice", "Completed 10 Pomodoros in total!");
         }
