@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/ivBadge"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_achievement"
+        android:tint="@color/cream"
+        android:alpha="0.4"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvBadgeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locked"
+        android:textColor="@color/cream"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_regular"/>
+</LinearLayout>

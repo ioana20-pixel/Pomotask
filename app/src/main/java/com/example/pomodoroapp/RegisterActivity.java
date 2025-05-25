@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPasswordInput = findViewById(R.id.etConfirmPassword);
         registerButton = findViewById(R.id.btnRegister);
         goToLoginButton = findViewById(R.id.btnGoToLogin);
-//        progressBar = findViewById(R.id.progressBar);  // Make sure your layout includes this ProgressBar or remove it
+        progressBar = findViewById(R.id.progressBar);  // Make sure your layout includes this ProgressBar or remove it
 
         registerButton.setOnClickListener(v -> registerUser());
 

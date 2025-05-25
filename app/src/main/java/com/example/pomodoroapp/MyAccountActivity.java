@@ -63,6 +63,9 @@ public class MyAccountActivity extends AppCompatActivity {
             startActivity(new Intent(MyAccountActivity.this, DashboardActivity.class));
         });
 
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+
         // Support Section - You can implement this to open a contact form or email
         tvSupport.setOnClickListener(v -> {
             // For example: Open email app to contact support
@@ -133,20 +136,23 @@ public class MyAccountActivity extends AppCompatActivity {
 
     private void deleteAccount() {
         if (currentUser != null) {
-            // First delete any associated data from Firebase Firestore or other services
             currentUser.delete()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(MyAccountActivity.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
-                            // Log out after account deletion
                             auth.signOut();
-                            finish(); // Close the activity and go back to the login screen
+                            // Go to login screen and clear back stack
+                            Intent intent = new Intent(MyAccountActivity.this, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(MyAccountActivity.this, "Failed to delete account: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
     }
+
 
     // Change Password Functionality
     private void showChangePasswordDialog() {
