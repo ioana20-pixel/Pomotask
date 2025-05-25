@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/mochaBackground"
+    android:padding="24dp">
+
+    <!-- AppBar: Back Button + Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_back_arrow"
+            android:contentDescription="Back"
+            app:tint="@color/cream" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pomodoro Timer"
+            android:textColor="@color/cream"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_regular"/>
+    </LinearLayout>
+
+    <!-- Timer in a Card with Circular Progress -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="36dp"
+        app:cardBackgroundColor="@color/mochaAccent"
+        app:cardCornerRadius="130dp"
+        app:cardElevation="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular progress -->
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressIndicator"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                app:indicatorSize="220dp"
+                app:indicatorInset="0dp"
+                app:trackThickness="12dp"
+                app:indicatorDirectionCircular="clockwise"
+                app:trackColor="#57403B"
+                app:indicatorColor="@color/cream" />
+
+            <!-- Timer Text -->
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="25:00"
+                android:textColor="@color/cream"
+                android:textSize="56sp"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Pomodoro State -->
+    <TextView
+        android:id="@+id/tvState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work"
+        android:textColor="@color/cream"
+        android:textSize="22sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Timer Controls (round buttons) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="8dp">
+
+        <ImageButton
+            android:id="@+id/btnStartPause"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_play"
+            android:contentDescription="Start/Pause"
+            app:tint="@color/cream"
+            android:layout_marginEnd="20dp"/>
+
+        <ImageButton
+            android:id="@+id/btnReset"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_reset"
+            android:contentDescription="Reset"
+            app:tint="@color/cream"/>
+    </LinearLayout>
+
+    <!-- Session Counter and Pomodoro Rounds -->
+    <TextView
+        android:id="@+id/tvSessionInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Session: 1   •   Pomodoros: 0"
+        android:textColor="@color/cream"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Pomodoro "Tomato" icons (row of completed pomodoros) -->
+    <LinearLayout
+        android:id="@+id/layoutPomodoros"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btnDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Dashboard"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        android:drawableLeft="@drawable/ic_dashboard"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

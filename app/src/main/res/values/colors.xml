@@ -6,5 +6,13 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="mocha_light">#F3E9DC</color>   <!-- creamy latte -->
+    <color name="mocha_medium">#A67B5B</color>  <!-- mocha brown -->
+    <color name="mocha_dark">#5B3A29</color>    <!-- dark espresso -->
+    <color name="mocha_shadow">#33000000</color> <!-- transparent black for shadows -->
+    <color name="cream">#F5F1E9</color>      <!-- light cream color -->
+    <color name="mocha">#4B3832</color>
+    <color name="white">#FFFFFF</color>
+    <color name="mochaBackground">#362c29</color>
+    <color name="mochaAccent">#5c4438</color>
 </resources>

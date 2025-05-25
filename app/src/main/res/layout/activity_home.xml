@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mochaBackground"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="top">
+
+    <!-- Header: Greeting + Account Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Welcome back"
+            android:textSize="20sp"
+            android:textColor="@color/cream"
+            android:fontFamily="@font/poppins_regular" />
+
+        <ImageButton
+            android:id="@+id/btnAccount"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_account"
+            android:contentDescription="Go to Account"
+            app:tint="@color/cream" />
+    </LinearLayout>
+
+    <!-- DASHBOARD BUTTON: Add here -->
+    <Button
+        android:id="@+id/btnDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Dashboard"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="14dp"
+        android:drawableLeft="@drawable/ic_dashboard"
+    android:drawablePadding="12dp"/>
+
+    <!-- Date and Time -->
+    <Button
+        android:id="@+id/btnDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saturday, May 25 - 10:30 AM"
+        android:textSize="16sp"
+        android:textColor="@color/cream"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginBottom="16dp"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <!-- Timer Card with Icon -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardTimer"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/mochaAccent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_timer"
+                android:contentDescription="Timer Icon"
+                app:tint="@color/cream" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Timer"
+                android:textColor="@color/cream"
+                android:textSize="24sp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_regular" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Task Section -->
+    <TextView
+        android:id="@+id/tvTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today’s Tasks"
+        android:textSize="18sp"
+        android:textColor="@color/cream"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/taskContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <!-- Add Task Button -->
+    <Button
+        android:id="@+id/btnAddTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Task"
+        android:textColor="@color/cream"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="12dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"/>
+
+</LinearLayout>

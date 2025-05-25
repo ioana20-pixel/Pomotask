@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/mocha"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvRegisterTitle"
+        android:text="Pomotask"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/cream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="40dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <!-- Email -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="6dp"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Email"
+            android:background="@android:color/transparent"
+            android:inputType="textEmailAddress"
+            android:textColor="#4B3B2B"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Password -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="6dp"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Password"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:textColor="#4B3B2B"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Confirm Password -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="6dp"
+        android:layout_marginBottom="30dp"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Confirm Password"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:textColor="#4B3B2B"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"/>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="#A9746E"
+        android:textColor="@color/cream"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button" />
+
+    <Button
+        android:id="@+id/btnGoToLogin"
+        android:text="Already have an account? Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cream"
+        android:textSize="14sp"
+        android:background="@android:color/transparent"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+</LinearLayout>

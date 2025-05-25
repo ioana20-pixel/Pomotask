@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tvDayNumber"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/cream"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        android:background="@drawable/circle_background" />
+
+    <!-- Highlight circle for days with tasks -->
+    <View
+        android:id="@+id/highlightCircle"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/circle_accent"
+        android:visibility="gone" />
+</FrameLayout>

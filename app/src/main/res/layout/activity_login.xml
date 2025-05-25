@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/mocha"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        android:text="Pomotask"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/cream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="40dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/card_rounded_shadow"
+        android:textColor="@color/mocha_dark"
+        android:textColorHint="#BBADA3"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="@drawable/card_rounded_shadow"
+        android:textColor="@color/mocha_dark"
+        android:textColorHint="#BBADA3"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="#A9746E"
+        android:textColor="@color/cream"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/tvRegisterLink"
+        android:text="Don't have an account? Register"
+        android:textColor="@color/cream"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/poppins_regular"/>
+
+</LinearLayout>

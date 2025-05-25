@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+
+    <!-- Tomato body (brighter red, with cream outline) -->
+    <path
+        android:fillColor="#FF6359"
+    android:strokeColor="#FFE6C7"
+    android:strokeWidth="1.5"
+    android:pathData="M16,28 a12,10 0 1,1 0,-20 a12,10 0 1,1 0,20Z"/>
+    <!-- Left Leaf -->
+    <path
+        android:fillColor="#A88B58"
+        android:pathData="M16,10 l-3,-5 l2,0 l1,5Z"/>
+    <!-- Right Leaf -->
+    <path
+        android:fillColor="#A88B58"
+        android:pathData="M16,10 l3,-5 l-2,0 l-1,5Z"/>
+</vector>
